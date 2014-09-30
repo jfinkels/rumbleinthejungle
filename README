@@ -35,13 +35,14 @@ The code comprising this program is copyright 2014 Jeffrey Finkelstein. It is
 licensed under the GNU General Public License, version 3 (or later). For more
 information, see `LICENSE.txt` in this directory.
 
-The city name data is copyright 2008 MaxMind Inc. It is licensed under a custom
-license, similar to the BSD license. For more information, see `LICENSE_WC.txt`
-in this directory.
-
 The thesaurus data is copyright 2005 Princeton University. It is licensed under
 a custom license, similar to the BSD license. For more information, see
 `LICENSE_WN.txt` in this directory.
+
+This product includes data created by MaxMind, available from
+http://www.maxmind.com/. The city name data is copyright 2008 MaxMind Inc. It
+is licensed under a custom license, similar to the BSD license. For more
+information, see `LICENSE_WC.txt` in this directory.
 
 ## Contents ##
 
@@ -63,6 +64,24 @@ The `data/` directory contains the following files:
 * `cities.dat` - a list of cities of the world
 * `th_en_US_v2.dat` - the thesaurus database
 * `th_en_US_v2.idx` - an index of the thesaurus database
+
+## How it works ##
+
+The algorithm is relatively simple.
+
+- get synonyms for some simple "fight" words from a thesaurus
+  (`data/th_en_US_v2.dat`) that appears to have come originally from
+  [WordNet][w]
+- get a list of cities from a trimmed version of a database from [MaxMind][m]
+  (`data/cities.dat`)
+- get the pronunciation of the words from the [CMU Pronunciation
+  Dictionary][c], via the [NLTK][4] library.
+- compare the last few sounds in the pronunciation of each "fight" word and
+  each city to check if they rhyme
+
+[w]: http://wordnet.princeton.edu/
+[m]: http://www.maxmind.com
+[c]: http://www.speech.cs.cmu.edu/cgi-bin/cmudict
 
 ## Installing ##
 
