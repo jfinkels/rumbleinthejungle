@@ -12,9 +12,11 @@ homage to the historic boxing match, [The Rumble in the Jungle][2].
 
 For more information on this package, see
 
-  * `PyPI listing <http://pypi.python.org/pypi/rumbleinthejungle>`_
-  * `Source code repository <http://github.com/jfinkels/rumbleinthejungle>`_
+  * [PyPI listing][p]
+  * [Source code repository][g]
 
+[p]: http://pypi.python.org/pypi/rumbleinthejungle
+[g]: http://github.com/jfinkels/rumbleinthejungle
 [1]: http://www.imdb.com/title/tt1135525
 [2]: https://en.wikipedia.org/wiki/The_Rumble_in_the_Jungle
 
