@@ -22,6 +22,13 @@ For more information on this package, see
 
 [![Build status](https://secure.travis-ci.org/jfinkels/flask-restless.png)](http://travis-ci.org/jfinkels/flask-restless)
 
+## For the impatient ##
+
+    virtualenv env -p python3
+    . env/bin/activate
+    pip install rumbleinthejungle
+    python -m rumbleinthejungle
+
 ## Copyright licenses ##
 
 The code comprising this program is copyright 2014 Jeffrey Finkelstein. It is
