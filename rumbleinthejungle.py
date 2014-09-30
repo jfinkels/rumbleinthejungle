@@ -19,7 +19,7 @@
 """Finds rhyming phrases of the form "the disput in Beirut".
 
 """
-__version__ = '0.0.1'
+__version__ = '0.0.2-dev'
 
 import functools
 import itertools
