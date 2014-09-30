@@ -3,8 +3,8 @@ rumbleinthejungle
 =================
 
 rumbleinthejungle prints humorous rhyming phrases of the form "the dispute in
-Beirut", as appears in the 2009 film `*The Slammin' Salmon*
-<http://www.imdb.com/title/tt1135525/>`_, itself an homage to the historic
+Beirut", as appears in the 2009 film **`The Slammin' Salmon
+<http://www.imdb.com/title/tt1135525/>`_**, itself an homage to the historic
 boxing match entitled `The Rumble in the Jungle
 <https://en.wikipedia.org/wiki/The_Rumble_in_the_Jungle>`_.
 
