@@ -1,0 +1,106 @@
+# rumbleinthejungle #
+
+The Squabble in Strobl...
+
+The Wrangle in Spangle...
+
+The Quarrel in Sorell...
+
+rumbleinthejungle prints humorous rhyming phrases of the form "the dispute in
+Beirut", as appears in the 2009 film **[The Slammin' Salmon][1]**, itself an
+homage to the historic boxing match, [The Rumble in the Jungle][2].
+
+For more information on this package, see
+
+  * `PyPI listing <http://pypi.python.org/pypi/rumbleinthejungle>`_
+  * `Source code repository <http://github.com/jfinkels/rumbleinthejungle>`_
+
+[1]: http://www.imdb.com/title/tt1135525
+[2]: https://en.wikipedia.org/wiki/The_Rumble_in_the_Jungle
+
+[![Build status](https://secure.travis-ci.org/jfinkels/flask-restless.png)](http://travis-ci.org/jfinkels/flask-restless)
+
+## Copyright licenses ##
+
+The code comprising this program is copyright 2014 Jeffrey Finkelstein. It is
+licensed under the GNU General Public License, version 3 (or later). For more
+information, see `LICENSE.txt` in this directory.
+
+The city name data is copyright 2008 MaxMind Inc. It is licensed under a custom
+license, similar to the BSD license. For more information, see `LICENSE_WC.txt`
+in this directory.
+
+The thesaurus data is copyright 2005 Princeton University. It is licensed under
+a custom license, similar to the BSD license. For more information, see
+`LICENSE_WN.txt` in this directory.
+
+## Contents ##
+
+This is a partial listing of the contents of this package.
+
+* `data/` - the city name and thesaurus data files
+* `LICENSE.txt` - the copyright license for the Python code in this package
+* `LICENSE_WC.txt` - the copyright license for the city name data
+* `LICENSE_WN.txt` - the copyright license for the thesaurus data
+* `requirements.txt` - the pip requirements for installing this package
+* `requirements-test.txt` - the pip requirements for testing this package
+* `rumbleinthejungle.py` - the Python module containing the program
+* `README.md` - this file
+* `setup.py` - Python setuptools configuration file for packaging this program
+* `test_rumbleinthejungle.py` - unit tests for rumbleinthejungle
+
+The `data/` directory contains the following files:
+
+* `cities.dat` - a list of cities of the world
+* `th_en_US_v2.dat` - the thesaurus database
+* `th_en_US_v2.idx` - an index of the thesaurus database
+
+## Installing ##
+
+This application requires [Python][3] version 3.2 or later.
+
+It also requires the Python package [NLTK][4] to be installed
+
+This requirement is also listed in the `requirements.txt` file. Using `pip` is
+probably the easiest way to install the necessary packages:
+
+    pip install -r requirements.txt
+
+or
+
+    pip install nltk
+
+[3]: http://www.python.org
+[4]: http://www.nltk.org
+
+## How to use ##
+
+    python -m rumbleinthejungle
+
+## Testing ##
+
+Running the unit tests requires the [nose][5] library. This requirement is also
+listed in the `requirements-test.txt` file.
+
+Using `pip` is probably the easiest way to install this:
+
+    pip install -r requirements-test.txt
+
+or
+
+    pip install nose
+
+The Python unit tests are contained in the `test_rumbleinthejungle.py` file.
+To run the test suite, run the command
+
+    python setup.py test
+
+You can also run the unit tests in a less verbose way by doing
+
+    nosetests
+
+[5]: https://nose.readthedocs.org/
+
+## Contact ##
+
+Jeffrey Finkelstein <jeffrey.finkelstein@gmail.com>
