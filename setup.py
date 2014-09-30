@@ -63,6 +63,6 @@ setup(
     test_suite='nose.collector',
     tests_require=['nose'],
     url='http://github.com/jfinkels/rumbleinthejungle',
-    version='0.0.1-dev',
+    version='0.0.1',
     # zip_safe=False
 )
