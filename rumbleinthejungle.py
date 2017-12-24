@@ -256,15 +256,9 @@ def all_synonyms(words):
 def all_cities(citiesfile):
     # Get all the city names. The city names file is just a list of cities, one
     # per line.
-    with open(citiesfile) as f:
-        city = f.readline()
-        while city != '':
-            yield city.strip()
-            try:
-                city = f.readline()
-            except UnicodeDecodeError as e:
-                logging.debug('Skipping city %s due to decoding problems',
-                              city, e)
+    with open(citiesfile, encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            yield line.strip()
 
 
 def main():
