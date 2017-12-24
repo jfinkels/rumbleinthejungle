@@ -39,13 +39,13 @@ CITIES_FILE = 'data/cities.dat'
 #: A list of nouns that roughly mean "fight".
 BATTLE_WORDS = ['fight', 'battle', 'struggle', 'tiff', 'dispute']
 
-#: How strict the rhyming checker should be; more negative is more strict.
+#: How strict the rhyming checker should be; greater is more strict.
 #:
 #: This integer indicates the number of "sounds" that should be compared
 #: between the two strings. Since rhymes compare the rightmost sounds of words,
 #: this number indicates the number of sounds to compare when counting from the
 #: right.
-STRICTNESS = -4
+STRICTNESS = 4
 
 #: A set of all parts of speech known to the thesaurus.
 ALL_PARTS_OF_SPEECH = {'adj', 'noun', 'verb', 'adv'}
@@ -228,20 +228,35 @@ def rhyming_pairs(left_words, right_words):
     """
     # Create the dictionary of word pronunciations.
     pronunciations = cmudict.dict()
+
     # Use only those words for which cmudict knows a pronunciation.
     known_pronunciations = pronunciations.keys()
     left_words &= known_pronunciations
     right_words &= known_pronunciations
-    # Create a function that decides whether the pronunciation of two strings
-    # match. Currently it just checks if the last two syllables and
-    last_two = lambda s: {tuple(p[STRICTNESS:]) for p in pronunciations[s]}
-    rhymes_with = lambda s, t: len(last_two(s) & last_two(t)) > 0
+
+    def is_rhyme(wordpair, numsyllables=STRICTNESS):
+        """Determine whether two words rhyme."""
+
+        word1, word2 = wordpair
+
+        # Get pronunciations of the last few syllables of each word.
+        #
+        # The `numsyllables` parameter controls how many of the final
+        # syllables in each pronunciation are checked. Increasing the number
+        # of syllables makes it more difficult to find a match.
+        lastsyllables1 = {tuple(p[-numsyllables:]) for p in pronunciations[word1]}
+        lastsyllables2 = {tuple(p[-numsyllables:]) for p in pronunciations[word2]}
+
+        # Check if any of the pronunciations of the two words match.
+        result = len(lastsyllables1 & lastsyllables2) > 0
+
+        return result
+
     # Iterate over each possible pair of words, and compare their
     # pronunciations. If the pronunciations match, we've found a succesful
     # pair.
-    pairs = ((s, t) for (s, t)
-             in itertools.product(left_words, right_words)
-             if rhymes_with(s, t))
+    pairs = filter(is_rhyme, itertools.product(left_words, right_words))
+
     return pairs
 
 
