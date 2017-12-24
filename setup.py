@@ -39,29 +39,6 @@ class install(_install):
             sys.exit(-1)
 
 setup(
-    author='Jeffrey Finkelstein',
-    author_email='jeffrey.finkelstein@gmail.com',
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Environment :: Console',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Topic :: Games/Entertainment'
-    ],
     cmdclass={'install': install},
-    description='A command-line program that prints rhyming phrases.',
-    download_url='http://pypi.python.org/pypi/rumbleinthejungle',
-    install_requires=['nltk'],
-    include_package_data=True,
-    license='GNU GPLv3+',
     long_description=__doc__,
-    name='rumbleinthejungle',
-    platforms='any',
-    test_suite='test_rumbleinthejungle',
-    url='http://github.com/jfinkels/rumbleinthejungle',
-    version='0.0.2-dev',
-    # zip_safe=False
 )
