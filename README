@@ -31,9 +31,10 @@ For more information on this package, see
 
 ## Copyright licenses ##
 
-The code comprising this program is copyright 2014 Jeffrey Finkelstein. It is
-licensed under the GNU General Public License, version 3 (or later). For more
-information, see `LICENSE.txt` in this directory.
+The code comprising this program is copyright 2014, 2017 Jeffrey Finkelstein.
+
+It is licensed under the GNU General Public License, version 3 (or later). For
+more information, see `LICENSE.txt` in this directory.
 
 The thesaurus data is copyright 2005 Princeton University. It is licensed under
 a custom license, similar to the BSD license. For more information, see
