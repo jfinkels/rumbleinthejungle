@@ -1,6 +1,6 @@
 # rumbleinthejungle.py - finds rhyming phrases like "the dispute in Beirut"
 #
-# Copyright 2014 Jeffrey Finkelstein.
+# Copyright 2014, 2017 Jeffrey Finkelstein.
 #
 # This file is part of rumbleinthejungle.
 #
