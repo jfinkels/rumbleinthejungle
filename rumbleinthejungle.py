@@ -267,10 +267,9 @@ def all_cities(citiesfile):
                               city, e)
 
 
-def all_phrases():
-    """Returns an iterable of all phrases of the form "the dispute in Beirut".
+def main():
+    """Prints all rhyming phrases."""
 
-    """
     # Get each synonym for each "battle" word.
     synonyms = all_synonyms(BATTLE_WORDS)
 
@@ -280,14 +279,9 @@ def all_phrases():
     # Get each (battle, city) rhyming pair.
     pairs = rhyming_pairs(synonyms, cities)
 
-    yield from pairs
-
-
-def main():
-    """Prints all rhyming phrases."""
-    pairs = all_phrases()
     for word, city in pairs:
         print('the {} in {}'.format(word, city.capitalize()))
+
 
 if __name__ == '__main__':
     main()
