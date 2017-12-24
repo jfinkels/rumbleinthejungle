@@ -245,30 +245,42 @@ def rhyming_pairs(left_words, right_words):
     return pairs
 
 
-def all_phrases():
-    """Returns an iterable of all phrases of the form "the dispute in Beirut".
-
-    """
+def all_synonyms(words):
     # Get all the synonyms of all the battle words.
     with ThesaurusIndex(THESAURUS_INDEX) as index, \
             Thesaurus(THESAURUS_DATA, index) as thesaurus:
+        for word in words:
+            yield from thesaurus.synonyms(word, parts_of_speech={'noun'})
 
-        all_synonyms = union(*(thesaurus.synonyms(word,
-                                                  parts_of_speech={'noun'})
-                               for word in BATTLE_WORDS))
+
+def all_cities(citiesfile):
     # Get all the city names. The city names file is just a list of cities, one
     # per line.
-    all_cities = []
-    with open(CITIES_FILE) as f:
+    with open(citiesfile) as f:
         city = f.readline()
         while city != '':
-            all_cities.append(city.strip())
+            yield city.strip()
             try:
                 city = f.readline()
             except UnicodeDecodeError as e:
                 logging.debug('Skipping city %s due to decoding problems',
                               city, e)
-    return rhyming_pairs(all_synonyms, all_cities)
+
+
+def all_phrases():
+    """Returns an iterable of all phrases of the form "the dispute in Beirut".
+
+    """
+    # Get each synonym for each "battle" word.
+    synonyms = all_synonyms(BATTLE_WORDS)
+
+    # Get each city name.
+    cities = all_cities(CITIES_FILE)
+
+    # Get each (battle, city) rhyming pair.
+    pairs = rhyming_pairs(synonyms, cities)
+
+    yield from pairs
 
 
 def main():
