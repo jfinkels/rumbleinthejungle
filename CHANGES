@@ -10,6 +10,9 @@ Version 0.0.2-dev
 
 Not yet released.
 
+- Removed `nose` as a test dependency.
+
+
 Version 0.0.1
 -------------
 

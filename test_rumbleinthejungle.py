@@ -17,30 +17,37 @@
 # You should have received a copy of the GNU General Public License along with
 # rumbleinthejungle.  If not, see <http://www.gnu.org/licenses/>.
 """Unit tests for :mod:`rumbleinthejungle`."""
+import unittest
+
 from rumbleinthejungle import THESAURUS_INDEX
 from rumbleinthejungle import THESAURUS_DATA
 from rumbleinthejungle import Thesaurus
 from rumbleinthejungle import ThesaurusIndex
 
 
-def test_byte_offset():
-    """Tests that the index correctly computes the byte offset from the file.
+class TestThesaurusIndex(unittest.TestCase):
 
-    """
-    with ThesaurusIndex(THESAURUS_INDEX) as index:
-        assert index.byte_offset('simple') == 15076188
-        assert index.byte_offset('travesty') == 17018737
-        assert index.byte_offset('banana') == 1314743
+    def test_byte_offset(self):
+        """Tests that the index correctly computes the byte offset from the file.
+
+        """
+        with ThesaurusIndex(THESAURUS_INDEX) as index:
+            assert index.byte_offset('simple') == 15076188
+            assert index.byte_offset('travesty') == 17018737
+            assert index.byte_offset('banana') == 1314743
 
 
-def test_synonyms():
-    """Tests that the thesaurus correctly provides synonyms to a given word."""
-    with ThesaurusIndex(THESAURUS_INDEX) as index, \
-            Thesaurus(THESAURUS_DATA, index) as thesaurus:
-        # These are taken from the example given in the original documentation
-        # for the thesaurus data file.
-        assert thesaurus.synonyms('junk') == \
-            {'debris', 'dust', 'rubble', 'detritus', 'rubbish', 'trash',
-             'scrap', 'boat', 'trash', 'scrap', 'discard', 'fling', 'toss',
-             'toss out', 'toss away', 'chuck out', 'cast aside', 'dispose',
-             'throw out', 'cast out', 'throw away', 'cast away', 'put away'}
+
+class TestThesaurus(unittest.TestCase):
+
+    def test_synonyms(self):
+        """Tests that the thesaurus correctly provides synonyms to a given word."""
+        with ThesaurusIndex(THESAURUS_INDEX) as index, \
+                Thesaurus(THESAURUS_DATA, index) as thesaurus:
+            # These are taken from the example given in the original documentation
+            # for the thesaurus data file.
+            assert thesaurus.synonyms('junk') == \
+                {'debris', 'dust', 'rubble', 'detritus', 'rubbish', 'trash',
+                 'scrap', 'boat', 'trash', 'scrap', 'discard', 'fling', 'toss',
+                 'toss out', 'toss away', 'chuck out', 'cast aside', 'dispose',
+                 'throw out', 'cast out', 'throw away', 'cast away', 'put away'}
