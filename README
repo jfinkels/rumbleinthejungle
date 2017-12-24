@@ -87,14 +87,7 @@ The algorithm is relatively simple.
 
 This application requires [Python][3] version 3.2 or later.
 
-It also requires the Python package [NLTK][4] to be installed
-
-This requirement is also listed in the `requirements.txt` file. Using `pip` is
-probably the easiest way to install the necessary packages:
-
-    pip install -r requirements.txt
-
-or
+It also requires the Python package [NLTK][4] to be installed.
 
     pip install nltk
 
@@ -107,27 +100,10 @@ or
 
 ## Testing ##
 
-Running the unit tests requires the [nose][5] library. This requirement is also
-listed in the `requirements-test.txt` file.
-
-Using `pip` is probably the easiest way to install this:
-
-    pip install -r requirements-test.txt
-
-or
-
-    pip install nose
-
-The Python unit tests are contained in the `test_rumbleinthejungle.py` file.
-To run the test suite, run the command
+The Python unit tests are contained in the `test_rumbleinthejungle.py`
+file. To run the test suite, run the command
 
     python setup.py test
-
-You can also run the unit tests in a less verbose way by doing
-
-    nosetests
-
-[5]: https://nose.readthedocs.org/
 
 ## Contact ##
 
