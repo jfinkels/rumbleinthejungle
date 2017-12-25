@@ -19,8 +19,14 @@
 """Classes and functions for finding synonyms."""
 import logging
 
+__all__ = (
+    'all_synonyms',
+    'Thesaurus',
+    'ThesaurusIndex',
+)
+
 #: A set of all parts of speech known to the thesaurus.
-ALL_PARTS_OF_SPEECH = {'adj', 'noun', 'verb', 'adv'}
+ALL_PARTS_OF_SPEECH = frozenset({'adj', 'noun', 'verb', 'adv'})
 
 
 class ThesaurusIndex:
@@ -167,3 +173,27 @@ class Thesaurus:
                         else term for term in synonyms]
             result |= set(synonyms)
         return result
+
+
+def all_synonyms(thesaurus_index, thesaurus_data, words,
+                 parts_of_speech=ALL_PARTS_OF_SPEECH):
+    """Yield the synonyms of each word in a given list of words.
+
+    This function is an iterator generator that yields a flattened
+    iterator over the synonyms of each word in `words`. The thesaurus to
+    use is given by `thesaurus_index` and `thesaurus_data`, filenames of
+    the thesaurus index and data files; for more information on the
+    format of these files, see :class:`.ThesaurusIndex` and
+    :class:`.Thesaurus`.
+
+    If `parts_of_speech` is specified, restrict the synonyms to only
+    those parts of speech. The value of this parameter must be a subset
+    of ::
+
+        {'adj', 'adv', 'noun', 'verb'}
+
+    """
+    with ThesaurusIndex(thesaurus_index) as index, \
+            Thesaurus(thesaurus_data, index) as thesaurus:
+        for word in words:
+            yield from thesaurus.synonyms(word, parts_of_speech)
