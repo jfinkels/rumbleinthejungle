@@ -1,4 +1,4 @@
-# test_rumbleinthejungle.py - unit tests for rumbleinthejungle
+# test_main.py - unit tests for rumbleinthejungle
 #
 # Copyright 2014, 2017 Jeffrey Finkelstein.
 #
@@ -20,38 +20,6 @@
 import unittest
 
 from rumbleinthejungle.__main__ import rhyming_pairs
-from rumbleinthejungle.__main__ import THESAURUS_INDEX
-from rumbleinthejungle.__main__ import THESAURUS_DATA
-from rumbleinthejungle.__main__ import Thesaurus
-from rumbleinthejungle.__main__ import ThesaurusIndex
-
-
-class TestThesaurusIndex(unittest.TestCase):
-
-    def test_byte_offset(self):
-        """Tests that the index correctly computes the byte offset from the file.
-
-        """
-        with ThesaurusIndex(THESAURUS_INDEX) as index:
-            assert index.byte_offset('simple') == 15076188
-            assert index.byte_offset('travesty') == 17018737
-            assert index.byte_offset('banana') == 1314743
-
-
-
-class TestThesaurus(unittest.TestCase):
-
-    def test_synonyms(self):
-        """Tests that the thesaurus correctly provides synonyms to a given word."""
-        with ThesaurusIndex(THESAURUS_INDEX) as index, \
-                Thesaurus(THESAURUS_DATA, index) as thesaurus:
-            # These are taken from the example given in the original documentation
-            # for the thesaurus data file.
-            assert thesaurus.synonyms('junk') == \
-                {'debris', 'dust', 'rubble', 'detritus', 'rubbish', 'trash',
-                 'scrap', 'boat', 'trash', 'scrap', 'discard', 'fling', 'toss',
-                 'toss out', 'toss away', 'chuck out', 'cast aside', 'dispose',
-                 'throw out', 'cast out', 'throw away', 'cast away', 'put away'}
 
 
 class TestRhymingPairs(unittest.TestCase):
