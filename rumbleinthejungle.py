@@ -25,7 +25,7 @@ import functools
 import itertools
 import logging
 
-from nltk.corpus import cmudict
+import pronouncing
 
 #: The location of the thesaurus index file.
 THESAURUS_INDEX = 'data/th_en_US_v2.idx'
@@ -215,6 +215,23 @@ def union(*sets):
     return functools.reduce(lambda S, T: S | T, sets, set())
 
 
+def rhyming_parts(words):
+    """Yield the rhyming parts of each pronunciation for each given word.
+
+    `words` is an iterable of strings.
+
+    This function is an iterator generator that yields pairs comprising
+    a word from `words` and a set of lists of strings. Each list of
+    strings represents the rhyming part of one of the pronunciations of
+    the corresponding word from `words`.
+
+    """
+    for word in words:
+        phones = pronouncing.phones_for_word(word)
+        if phones:
+            yield word, set(map(pronouncing.rhyming_part, phones))
+
+
 def rhyming_pairs(left_words, right_words):
     """Returns a set of pairs of words that rhyme.
 
@@ -226,38 +243,16 @@ def rhyming_pairs(left_words, right_words):
     according to the Carnegie Mellon University Pronouncing Dictionary.
 
     """
-    # Create the dictionary of word pronunciations.
-    pronunciations = cmudict.dict()
 
-    # Use only those words for which cmudict knows a pronunciation.
-    known_pronunciations = pronunciations.keys()
-    left_words &= known_pronunciations
-    right_words &= known_pronunciations
+    logging.debug('Computing rhyming parts for left words...')
+    leftparts = dict(rhyming_parts(left_words))
+    rightparts = dict(rhyming_parts(right_words))
 
-    def is_rhyme(wordpair, numsyllables=STRICTNESS):
-        """Determine whether two words rhyme."""
-
-        word1, word2 = wordpair
-
-        # Get pronunciations of the last few syllables of each word.
-        #
-        # The `numsyllables` parameter controls how many of the final
-        # syllables in each pronunciation are checked. Increasing the number
-        # of syllables makes it more difficult to find a match.
-        lastsyllables1 = {tuple(p[-numsyllables:]) for p in pronunciations[word1]}
-        lastsyllables2 = {tuple(p[-numsyllables:]) for p in pronunciations[word2]}
-
-        # Check if any of the pronunciations of the two words match.
-        result = len(lastsyllables1 & lastsyllables2) > 0
-
-        return result
-
-    # Iterate over each possible pair of words, and compare their
-    # pronunciations. If the pronunciations match, we've found a succesful
-    # pair.
-    pairs = filter(is_rhyme, itertools.product(left_words, right_words))
-
-    return pairs
+    logging.debug('Computing matching rhyming parts...')
+    for word1, rhymingparts1 in leftparts.items():
+        for word2, rhymingparts2 in rightparts.items():
+            if rhymingparts1 & rhymingparts2:
+                yield word1, word2
 
 
 def all_synonyms(words):

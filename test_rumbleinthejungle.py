@@ -19,6 +19,7 @@
 """Unit tests for :mod:`rumbleinthejungle`."""
 import unittest
 
+from rumbleinthejungle import rhyming_pairs
 from rumbleinthejungle import THESAURUS_INDEX
 from rumbleinthejungle import THESAURUS_DATA
 from rumbleinthejungle import Thesaurus
@@ -51,3 +52,11 @@ class TestThesaurus(unittest.TestCase):
                  'scrap', 'boat', 'trash', 'scrap', 'discard', 'fling', 'toss',
                  'toss out', 'toss away', 'chuck out', 'cast aside', 'dispose',
                  'throw out', 'cast out', 'throw away', 'cast away', 'put away'}
+
+
+class TestRhymingPairs(unittest.TestCase):
+
+    def test_rhymes(self):
+        actual = set(rhyming_pairs(['bickering'], ['pickering', 'flickering']))
+        expected = {('bickering', 'pickering'), ('bickering', 'flickering')}
+        self.assertEqual(actual, expected)

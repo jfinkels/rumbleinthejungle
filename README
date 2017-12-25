@@ -76,24 +76,24 @@ The algorithm is relatively simple.
 - get a list of cities from a trimmed version of a database from [MaxMind][m]
   (`data/cities.dat`)
 - get the pronunciation of the words from the [CMU Pronunciation
-  Dictionary][c], via the [NLTK][4] library.
+  Dictionary][c], via the [pronunciation][4] library.
 - compare the last few sounds in the pronunciation of each "fight" word and
   each city to check if they rhyme
 
 [w]: http://wordnet.princeton.edu/
 [m]: http://www.maxmind.com
 [c]: http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+[4]: https://pronouncing.readthedocs.org
 
 ## Installing ##
 
 This application requires [Python][3] version 3.2 or later.
 
-It also requires the Python package [NLTK][4] to be installed.
+It also requires the Python package [pronouncing][4] to be installed.
 
-    pip install nltk
+    pip install pronouncing
 
 [3]: http://www.python.org
-[4]: http://www.nltk.org
 
 ## How to use ##
 
