@@ -118,6 +118,15 @@ def rhyming_pairs(left_words, right_words):
     Rhyming is determined by comparing the pronunciations of the words
     according to the Carnegie Mellon University Pronouncing Dictionary.
 
+    For example:
+
+    .. doctest::
+
+       >>> left_words = ['cat', 'dog']
+       >>> right_words = ['hat', 'fog']
+       >>> list(rhyming_pairs(left_words, right_words))
+       [('cat', 'hat'), ('dog', 'fog')]
+
     """
     rdict = BipartiteRhymingDictionary(left_words, right_words)
     for word1 in left_words:
