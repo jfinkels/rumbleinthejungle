@@ -1,4 +1,4 @@
-# test_rumbleinthejungle.py - unit tests for rumbleinthejungle
+# test_thesaurus.py - unit tests for the thesaurus
 #
 # Copyright 2014, 2017 Jeffrey Finkelstein.
 #
@@ -16,14 +16,13 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # rumbleinthejungle.  If not, see <http://www.gnu.org/licenses/>.
-"""Unit tests for :mod:`rumbleinthejungle`."""
+"""Unit tests for the thesaurus classes."""
 import unittest
 
-from rumbleinthejungle import rhyming_pairs
-from rumbleinthejungle import THESAURUS_INDEX
-from rumbleinthejungle import THESAURUS_DATA
-from rumbleinthejungle import Thesaurus
-from rumbleinthejungle import ThesaurusIndex
+from rumbleinthejungle.__main__ import THESAURUS_INDEX
+from rumbleinthejungle.__main__ import THESAURUS_DATA
+from rumbleinthejungle.thesaurus import Thesaurus
+from rumbleinthejungle.thesaurus import ThesaurusIndex
 
 
 class TestThesaurusIndex(unittest.TestCase):
@@ -52,11 +51,3 @@ class TestThesaurus(unittest.TestCase):
                  'scrap', 'boat', 'trash', 'scrap', 'discard', 'fling', 'toss',
                  'toss out', 'toss away', 'chuck out', 'cast aside', 'dispose',
                  'throw out', 'cast out', 'throw away', 'cast away', 'put away'}
-
-
-class TestRhymingPairs(unittest.TestCase):
-
-    def test_rhymes(self):
-        actual = set(rhyming_pairs(['bickering'], ['pickering', 'flickering']))
-        expected = {('bickering', 'pickering'), ('bickering', 'flickering')}
-        self.assertEqual(actual, expected)
