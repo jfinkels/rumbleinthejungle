@@ -19,8 +19,14 @@
 """Classes and functions for finding synonyms."""
 import logging
 
+__all__ = (
+    'all_synonyms',
+    'Thesaurus',
+    'ThesaurusIndex',
+)
+
 #: A set of all parts of speech known to the thesaurus.
-ALL_PARTS_OF_SPEECH = {'adj', 'noun', 'verb', 'adv'}
+ALL_PARTS_OF_SPEECH = frozenset({'adj', 'noun', 'verb', 'adv'})
 
 
 class ThesaurusIndex:
@@ -167,3 +173,12 @@ class Thesaurus:
                         else term for term in synonyms]
             result |= set(synonyms)
         return result
+
+
+def all_synonyms(thesaurus_index, thesaurus_data, words,
+                 parts_of_speech=ALL_PARTS_OF_SPEECH):
+    # Get all the synonyms of all the battle words.
+    with ThesaurusIndex(thesaurus_index) as index, \
+            Thesaurus(thesaurus_data, index) as thesaurus:
+        for word in words:
+            yield from thesaurus.synonyms(word, parts_of_speech)

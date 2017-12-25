@@ -19,9 +19,8 @@
 """Finds rhyming phrases of the form "the disput in Beirut".
 
 """
-from .thesaurus import ThesaurusIndex
-from .thesaurus import Thesaurus
-from .rhymes import BipartiteRhymingDictionary
+from .thesaurus import all_synonyms
+from .rhymes import rhyming_pairs
 
 #: The location of the thesaurus index file.
 THESAURUS_INDEX = 'data/th_en_US_v2.idx'
@@ -36,31 +35,6 @@ CITIES_FILE = 'data/cities.dat'
 BATTLE_WORDS = ['fight', 'battle', 'struggle', 'tiff', 'dispute']
 
 
-def rhyming_pairs(left_words, right_words):
-    """Returns a set of pairs of words that rhyme.
-
-    The left and right elements of the pair are chosen from `left_words` and
-    `right_words`, respectively.
-
-    Rhyming is determined by comparing the pronunciations of the words
-    according to the Carnegie Mellon University Pronouncing Dictionary.
-
-    """
-    rdict = BipartiteRhymingDictionary(left_words, right_words)
-    for word1 in left_words:
-        for word2 in right_words:
-            if rdict.is_rhyme(word1, word2):
-                yield word1, word2
-
-
-def all_synonyms(words):
-    # Get all the synonyms of all the battle words.
-    with ThesaurusIndex(THESAURUS_INDEX) as index, \
-            Thesaurus(THESAURUS_DATA, index) as thesaurus:
-        for word in words:
-            yield from thesaurus.synonyms(word, parts_of_speech={'noun'})
-
-
 def all_cities(citiesfile):
     # Get all the city names. The city names file is just a list of cities, one
     # per line.
@@ -73,7 +47,7 @@ def main():
     """Prints all rhyming phrases."""
 
     # Get each synonym for each "battle" word.
-    synonyms = set(all_synonyms(BATTLE_WORDS))
+    synonyms = set(all_synonyms(THESAURUS_INDEX, THESAURUS_DATA, BATTLE_WORDS))
 
     # Get each city name.
     cities = set(all_cities(CITIES_FILE))

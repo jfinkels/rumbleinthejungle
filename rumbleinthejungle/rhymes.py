@@ -19,6 +19,11 @@
 """Classes representing a rhyming dictionary."""
 import pronouncing
 
+__all__ = (
+    'BipartiteRhymingDictionary',
+    'rhyming_pairs',
+)
+
 
 class BipartiteRhymingDictionary:
     """A rhyming dictionary with left and right word sets.
@@ -102,3 +107,20 @@ class BipartiteRhymingDictionary:
         rhymingparts2 = self._right[word2]
         result = bool(rhymingparts1 & rhymingparts2)
         return result
+
+
+def rhyming_pairs(left_words, right_words):
+    """Returns a set of pairs of words that rhyme.
+
+    The left and right elements of the pair are chosen from `left_words` and
+    `right_words`, respectively.
+
+    Rhyming is determined by comparing the pronunciations of the words
+    according to the Carnegie Mellon University Pronouncing Dictionary.
+
+    """
+    rdict = BipartiteRhymingDictionary(left_words, right_words)
+    for word1 in left_words:
+        for word2 in right_words:
+            if rdict.is_rhyme(word1, word2):
+                yield word1, word2
