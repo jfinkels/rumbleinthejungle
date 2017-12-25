@@ -19,11 +19,11 @@
 """Unit tests for :mod:`rumbleinthejungle`."""
 import unittest
 
-from rumbleinthejungle import rhyming_pairs
-from rumbleinthejungle import THESAURUS_INDEX
-from rumbleinthejungle import THESAURUS_DATA
-from rumbleinthejungle import Thesaurus
-from rumbleinthejungle import ThesaurusIndex
+from rumbleinthejungle.__main__ import rhyming_pairs
+from rumbleinthejungle.__main__ import THESAURUS_INDEX
+from rumbleinthejungle.__main__ import THESAURUS_DATA
+from rumbleinthejungle.__main__ import Thesaurus
+from rumbleinthejungle.__main__ import ThesaurusIndex
 
 
 class TestThesaurusIndex(unittest.TestCase):
