@@ -19,8 +19,6 @@
 """Finds rhyming phrases of the form "the disput in Beirut".
 
 """
-__version__ = '0.0.2-dev'
-
 from .thesaurus import ThesaurusIndex
 from .thesaurus import Thesaurus
 from .rhymes import BipartiteRhymingDictionary

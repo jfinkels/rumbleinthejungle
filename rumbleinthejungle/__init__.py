@@ -17,3 +17,5 @@
 # You should have received a copy of the GNU General Public License along with
 # rumbleinthejungle.  If not, see <http://www.gnu.org/licenses/>.
 """Finds rhyming phrases of the form "the disput in Beirut"."""
+
+__version__ = '0.0.2-dev'
